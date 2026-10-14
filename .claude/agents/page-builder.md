@@ -28,6 +28,7 @@ tools: Read, Glob, Grep, Write, Edit
 7. 화면 문구·금액·요금제 값은 spec.json에서 가져온다. 지어내지 않는다. pages.json에 `pending`인 부분은 구현하지 말고 남겨 둔다.
 8. harness/rules.json `contract`의 마커(data-* 속성, name 속성)를 그대로 붙인다. 판정 스크립트가 이것으로 화면을 센다.
 9. 신청자 이름은 `/complete`에서 첫 글자만 보이고 나머지는 `*`로 표시한다. 휴대폰 번호는 표시하지 않는다.
+10. 저장소 접근은 `app/src/data/` 안에서만 한다. `VITE_PUBLIC_SUPABASE_URL`·`VITE_PUBLIC_SUPABASE_PUBLISHABLE_KEY`가 둘 다 있으면 `@supabase/supabase-js`로 DB 함수(rpc)만 호출하고 테이블을 직접 읽거나 쓰지 않는다. 값이 비어 있으면 같은 함수 모양의 브라우저 메모리 저장소를 쓴다(판정 빌드는 이 경로로 돈다). 키 값을 코드에 적지 않는다.
 
 ## 끝나면
 바꾼 파일 목록만 짧게 돌려준다. 빌드·검사는 오케스트레이터가 `node scripts/gate-screen.mjs <라우트>`로 돌린다.

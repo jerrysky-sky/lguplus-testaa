@@ -19,6 +19,8 @@ const write = (p, s, { keep = false } = {}) => {
 // @make-kits/lg는 공개 npm에 없다. UI는 Design.md 사양대로 app/src/ui/에 직접 만든다
 const deps = { ...ref.dependencies }
 delete deps['@make-kits/lg']
+// 신청 저장소 (spec Q9). 판정 빌드에서는 연결값을 비워 메모리 저장소로 돈다(gate-screen.mjs)
+deps['@supabase/supabase-js'] = '2.117.2'
 write('package.json', JSON.stringify({
   name: 'harness-app',
   private: true,
@@ -68,16 +70,17 @@ write('index.html', `<!doctype html>
 
 // Supabase 연결값 빈 틀. 값은 사람이 채우고 git에는 올리지 않는다(.gitignore의 .env*.local)
 write('.env.local', `# Supabase 프로젝트 연결값 (Supabase 대시보드 > Project Settings > API)
-# 브라우저에 노출되는 값이므로 anon(public) 키만 넣는다. service_role 키는 넣지 않는다.
-VITE_SUPABASE_URL=
-VITE_SUPABASE_ANON_KEY=
+# 브라우저에 노출되는 값이므로 publishable(anon) 키만 넣는다. secret·service_role 키는 넣지 않는다.
+# 비워 두면 앱은 브라우저 메모리 저장소를 쓴다.
+VITE_PUBLIC_SUPABASE_URL=
+VITE_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 `, { keep: true })
 
 write('src/vite-env.d.ts', `/// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly VITE_SUPABASE_URL: string
-  readonly VITE_SUPABASE_ANON_KEY: string
+  readonly VITE_PUBLIC_SUPABASE_URL?: string
+  readonly VITE_PUBLIC_SUPABASE_PUBLISHABLE_KEY?: string
 }
 
 interface ImportMeta {
