@@ -1,0 +1,88 @@
+{
+  "$comment": "서비스 고유 판정 조건. 토큰 값은 여기 적지 않는다(SSOT는 docs/tokens.json). 판정 값(요금제·문구)은 harness/spec/spec.json에서 읽는다. R8 승인 후 고정, 변경은 '하네스 수정' 승인 필요.",
+  "allowedImports": ["react", "react-dom", "@make-kits/lg", "clsx"],
+  "componentOverrides": {
+    "/plans/[id]": { "OptionItem": "List/Row" }
+  },
+  "unlimitedKeyword": "무제한",
+  "defaultApplyQuery": "plan",
+  "labels": {
+    "filterAll": "전체",
+    "detail": "자세히",
+    "apply": "구독 신청하기",
+    "submit": "신청하기",
+    "toList": "목록으로",
+    "morePlans": "요금제 더 보기",
+    "notFound": "요금제를 찾을 수 없어요."
+  },
+  "messageKeys": {
+    "$comment": "spec.json messages의 키 이름. spec-writer가 이 키로 적는다.",
+    "nameRequired": "name_required",
+    "nameInvalid": "name_invalid",
+    "phoneInvalid": "phone_invalid",
+    "saveFailed": "save_failed"
+  },
+  "testInput": {
+    "$comment": "판정용 가짜 입력값. 실제 개인정보 아님.",
+    "name": "테스트",
+    "phone": "01000000000",
+    "invalidName": "a1",
+    "invalidPhone": "0101234"
+  },
+  "contract": {
+    "selectors": {
+      "planCard": "[data-plan-id]",
+      "planCardAttr": "data-plan-id",
+      "recommendedTag": "[data-tag=\"recommended\"]",
+      "filterChip": "[data-filter-chip]",
+      "selectedAttr": "aria-pressed",
+      "back": "[data-nav=\"back\"]",
+      "fieldAttr": "data-field",
+      "errorAttr": "data-error-for",
+      "rowPlanName": "[data-row=\"plan-name\"]",
+      "rowMonthlyPrice": "[data-row=\"monthly-price\"]",
+      "rowApplicant": "[data-row=\"applicant\"]"
+    },
+    "markers": [
+      { "route": "/plans", "marker": "data-plan-id" },
+      { "route": "/plans", "marker": "data-tag=recommended" },
+      { "route": "/plans", "marker": "data-filter-chip" },
+      { "route": "/plans", "marker": "aria-pressed" },
+      { "route": "/plans/[id]", "marker": "data-nav=back" },
+      { "route": "/plans/[id]", "marker": "data-tag=recommended" },
+      { "route": "/apply", "marker": "data-nav=back" },
+      { "route": "/apply", "marker": "data-field=name" },
+      { "route": "/apply", "marker": "data-field=phone" },
+      { "route": "/apply", "marker": "data-field=agreed_privacy" },
+      { "route": "/apply", "marker": "data-error-for=name" },
+      { "route": "/apply", "marker": "data-error-for=phone" },
+      { "route": "/complete", "marker": "data-nav=back" },
+      { "route": "/complete", "marker": "data-row=plan-name" },
+      { "route": "/complete", "marker": "data-row=monthly-price" },
+      { "route": "/complete", "marker": "data-row=applicant" }
+    ]
+  },
+  "staticChecks": [
+    { "id": "A-original-off", "desc": "Card/Plan Original(정가) 속성 사용", "pattern": "\\bOriginal\\s*=" }
+  ],
+  "checks": [
+    { "id": "ox1-card-count", "gate": "G7", "route": "/plans", "ox": 1, "returnTo": "S4:/plans", "desc": "요금제 카드 정확히 4개(p01~p04)" },
+    { "id": "ox2-recommended", "gate": "G7", "route": "/plans", "ox": 2, "returnTo": "S4:/plans", "desc": "추천 Tag 1개, 추천 요금제 카드에만" },
+    { "id": "A-price-card", "gate": "G7", "route": "/plans", "ox": [3, 4], "must": "A", "returnTo": "S4:/plans", "desc": "★A 카드 금액: 할인 없는 요금제 1개, 할인 요금제 2개, 할인 종료 후 줄은 할인 요금제만" },
+    { "id": "B-throttle-card", "gate": "G7", "route": "/plans", "ox": 5, "must": "B", "returnTo": "S4:/plans", "desc": "★B '무제한' 요금제 카드에 소진 후 속도 문구 1개" },
+    { "id": "ox9-order", "gate": "G7", "route": "/plans", "ox": 9, "returnTo": "S4:/plans", "desc": "카드가 매달 내는 금액 낮은 순" },
+    { "id": "ox8-filter", "gate": "G7", "route": "/plans", "ox": 8, "returnTo": "S4:/plans", "desc": "기본 '전체' 선택, 칩 1개만 선택, '전체'로 4개 복귀", "partial": "칩 라벨·데이터량 경계값 미확정 → 조건별 카드 결과는 판정 보류", "question": "필터 칩 라벨·경계값" },
+    { "id": "A-price-detail", "gate": "G7", "route": "/plans/[id]", "ox": [3, 4], "must": "A", "returnTo": "S4:/plans/[id]", "desc": "★A 상세 금액 종류: 할인 없는 요금제 1종, 할인 요금제 2종" },
+    { "id": "B-throttle-detail", "gate": "G7", "route": "/plans/[id]", "ox": 5, "must": "B", "returnTo": "S4:/plans/[id]", "desc": "★B '무제한' 요금제 상세에 소진 후 속도 문구 1개" },
+    { "id": "ox13-invalid-detail", "gate": "G7", "route": "/plans/[id]", "ox": 13, "returnTo": "S4:/plans/[id]", "desc": "없는 id 상세 → 안내문 + '목록으로'" },
+    { "id": "ox13-invalid-apply", "gate": "G7", "route": "/apply", "ox": 13, "returnTo": "S4:/apply", "desc": "id 없음·없는 id 신청 → 안내문 + '목록으로'" },
+    { "id": "ox6-cta-disabled", "gate": "G7", "route": "/apply", "ox": 6, "returnTo": "S4:/apply", "desc": "이름·휴대폰·동의 중 하나라도 비면 신청하기 비활성" },
+    { "id": "ox14-error-position", "gate": "G7", "route": "/apply", "ox": 14, "returnTo": "S4:/apply", "desc": "이름·휴대폰 오류 문구가 해당 입력란 아래", "partial": "저장 실패 문구 위치는 저장소 미확정으로 보류", "question": "저장소·저장 실패 영역 컴포넌트" },
+    { "id": "ox10-back-reset", "gate": "G7", "route": "/apply", "ox": 10, "returnTo": "S4:/apply", "desc": "뒤로 → 요금제 상세, 다시 들어오면 입력값 초기화" },
+    { "id": "ox15-saving", "gate": "G7", "route": "/apply", "ox": 15, "returnTo": "S4:/apply", "desc": "신청하기 첫 탭 직후 다시 눌리지 않음", "partial": "저장 실패 시 입력값 유지는 저장소 미확정으로 보류", "question": "저장소·저장 응답 대기 시간" },
+    { "id": "ox7-complete-match", "gate": "G7", "route": "/complete", "ox": 7, "returnTo": "S4:/complete", "desc": "완료 화면 요금제 이름·매달 내는 금액이 선택한 요금제와 같음" },
+    { "id": "C-mask", "gate": "G7", "route": "/complete", "must": "C", "returnTo": "S4:/complete", "desc": "★C 신청자 이름 원문 0건, 첫 글자+* 형식, 휴대폰 번호 0건" },
+    { "id": "ox11-complete-nav", "gate": "G7", "route": "/complete", "ox": 11, "returnTo": "S4:/complete", "desc": "뒤로·'요금제 더 보기' → /plans, /apply로 돌아가지 않음" },
+    { "id": "ox12-complete-direct", "gate": "G7", "route": "/complete", "ox": 12, "returnTo": "S4:/complete", "desc": "직접 진입·새로고침 → /plans" }
+  ]
+}

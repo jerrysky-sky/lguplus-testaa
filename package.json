@@ -1,0 +1,18 @@
+{
+  "name": "screen-harness",
+  "private": true,
+  "type": "module",
+  "description": "화면 구현 하네스 스크립트 전용 (앱 코드는 app/)",
+  "scripts": {
+    "resume": "node scripts/resume.mjs",
+    "gate:spec": "node scripts/gate-spec.mjs",
+    "gate:pages": "node scripts/gate-pages.mjs",
+    "gate:tokens": "node scripts/gate-tokens.mjs",
+    "gate:screen": "node scripts/gate-screen.mjs",
+    "gate:all": "node scripts/gate-all.mjs",
+    "selftest": "node scripts/selftest.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.55.0"
+  }
+}
