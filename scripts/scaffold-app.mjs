@@ -68,6 +68,16 @@ write('index.html', `<!doctype html>
 </html>
 `)
 
+// Vercel 배포 설정 (Root Directory = app). SPA라 모든 경로를 index.html로 돌린다
+write('vercel.json', JSON.stringify({
+  $schema: 'https://openapi.vercel.sh/vercel.json',
+  framework: 'vite',
+  installCommand: 'npm ci',
+  buildCommand: 'npm run build',
+  outputDirectory: 'dist',
+  rewrites: [{ source: '/(.*)', destination: '/index.html' }],
+}, null, 2) + '\n')
+
 // Supabase 연결값 빈 틀. 값은 사람이 채우고 git에는 올리지 않는다(.gitignore의 .env*.local)
 write('.env.local', `# Supabase 프로젝트 연결값 (Supabase 대시보드 > Project Settings > API)
 # 브라우저에 노출되는 값이므로 publishable(anon) 키만 넣는다. secret·service_role 키는 넣지 않는다.
