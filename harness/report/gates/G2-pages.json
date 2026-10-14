@@ -1,0 +1,115 @@
+{
+  "gate": "G2-pages",
+  "route": null,
+  "generatedAt": "2026-10-14T06:04:13.282Z",
+  "status": "complete",
+  "returnTo": null,
+  "streak": 0,
+  "results": [
+    {
+      "id": "route-count",
+      "status": "pass",
+      "detail": "기대 4개(/plans /plans/[id] /apply /complete) / pages 4개(/plans /plans/[id] /apply /complete)"
+    },
+    {
+      "id": "components-known /plans",
+      "status": "pass",
+      "detail": "9개"
+    },
+    {
+      "id": "components-cover /plans",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "header /plans",
+      "status": "pass",
+      "detail": "Header 1개"
+    },
+    {
+      "id": "navigation /plans",
+      "status": "pass",
+      "detail": "1개"
+    },
+    {
+      "id": "markers /plans",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "components-known /plans/[id]",
+      "status": "pass",
+      "detail": "10개"
+    },
+    {
+      "id": "components-cover /plans/[id]",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "header /plans/[id]",
+      "status": "pass",
+      "detail": "Header 1개"
+    },
+    {
+      "id": "navigation /plans/[id]",
+      "status": "pass",
+      "detail": "3개"
+    },
+    {
+      "id": "markers /plans/[id]",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "components-known /apply",
+      "status": "pass",
+      "detail": "11개"
+    },
+    {
+      "id": "components-cover /apply",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "header /apply",
+      "status": "pass",
+      "detail": "Header 1개"
+    },
+    {
+      "id": "navigation /apply",
+      "status": "pass",
+      "detail": "3개"
+    },
+    {
+      "id": "markers /apply",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "components-known /complete",
+      "status": "pass",
+      "detail": "10개"
+    },
+    {
+      "id": "components-cover /complete",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "header /complete",
+      "status": "pass",
+      "detail": "Header 1개"
+    },
+    {
+      "id": "navigation /complete",
+      "status": "pass",
+      "detail": "3개"
+    },
+    {
+      "id": "markers /complete",
+      "status": "pass",
+      "detail": ""
+    }
+  ]
+}

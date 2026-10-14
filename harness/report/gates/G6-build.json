@@ -1,0 +1,20 @@
+{
+  "gate": "G6-build",
+  "route": null,
+  "generatedAt": "2026-10-14T06:04:28.554Z",
+  "status": "complete",
+  "returnTo": null,
+  "streak": 0,
+  "results": [
+    {
+      "id": "tsc",
+      "status": "pass",
+      "detail": "npx --no-install tsc --noEmit"
+    },
+    {
+      "id": "vite-build",
+      "status": "pass",
+      "detail": "npx --no-install vite build"
+    }
+  ]
+}

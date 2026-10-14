@@ -1,0 +1,20 @@
+{
+  "G1-spec": 0,
+  "G2-pages": 0,
+  "G3-tokens": 0,
+  "G5-static:/plans": 0,
+  "G6-build:/plans": 0,
+  "G7-render:/plans": 0,
+  "G5-static:/plans/[id]": 0,
+  "G6-build:/plans/[id]": 0,
+  "G7-render:/plans/[id]": 0,
+  "G5-static:/apply": 0,
+  "G6-build:/apply": 0,
+  "G7-render:/apply": 0,
+  "G5-static:/complete": 0,
+  "G6-build:/complete": 0,
+  "G7-render:/complete": 1,
+  "G5-static": 0,
+  "G6-build": 0,
+  "G7-render": 0
+}

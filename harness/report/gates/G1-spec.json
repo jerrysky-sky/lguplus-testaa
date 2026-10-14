@@ -1,0 +1,55 @@
+{
+  "gate": "G1-spec",
+  "route": null,
+  "generatedAt": "2026-10-14T06:04:12.666Z",
+  "status": "complete",
+  "returnTo": null,
+  "streak": 0,
+  "results": [
+    {
+      "id": "routes",
+      "status": "pass",
+      "detail": "기대 /plans /plans/[id] /apply /complete / spec /plans /plans/[id] /apply /complete"
+    },
+    {
+      "id": "plans-count",
+      "status": "pass",
+      "detail": "기대 4개 / spec 4개"
+    },
+    {
+      "id": "plan-p01",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "plan-p02",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "plan-p03",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "plan-p04",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "id": "rules",
+      "status": "pass",
+      "detail": "PRD 15개 / spec 15개"
+    },
+    {
+      "id": "messages",
+      "status": "pass",
+      "detail": "29개"
+    },
+    {
+      "id": "open-questions",
+      "status": "pass",
+      "detail": "PRD \"확인 필요\" 14줄 / 빠진 줄: 없음"
+    }
+  ]
+}
