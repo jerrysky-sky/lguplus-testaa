@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 import { navigate, useRoute } from '../../router.gen'
 import { BottomCTA, Button, Checkbox, Header, Input, ListRow } from '@/ui'
 import { afterDiscountText, findPlan, formatWon, messages } from '@/data/spec'
-import { saveSubscription } from '@/data/subscriptions'
+import { createSubscription, setHandoff } from '@/data/store'
 
 // 입력란·동의 라벨: spec.json screens[/apply].features(3·4번)의 표시 항목 이름 그대로
 const LABEL_PLAN = '요금제'
@@ -67,18 +67,22 @@ export default function Page() {
     setSaving(true)
     setSaveFailed(false)
     try {
-      await saveSubscription({
+      const created = await createSubscription({
+        planId: plan.id,
         name: name.trim(),
         phone,
-        plan_id: plan.id,
-        monthly_price: plan.monthly_price,
-        agreed_privacy: agreed,
+        agreedPrivacy: agreed,
       })
+      setHandoff({ id: created.id, subscription_no: created.subscription_no })
       navigate('/complete', { replace: true })
-    } catch {
+    } catch (e) {
+      // saveErrorMap: name_invalid·phone_invalid → 해당 입력란 아래, 그 밖 → save_failed (버튼 위)
+      const code = e instanceof Error ? e.message : ''
       savingRef.current = false
       setSaving(false)
-      setSaveFailed(true)
+      if (code === 'name_invalid') setErrName(messages.name_invalid)
+      else if (code === 'phone_invalid') setErrPhone(messages.phone_invalid)
+      else setSaveFailed(true)
     }
   }
 
