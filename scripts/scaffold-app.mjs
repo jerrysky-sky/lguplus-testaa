@@ -7,7 +7,6 @@ import { ROOT, APP_DIR, P, exists, readJson, rel } from './lib/common.mjs'
 const ref = readJson(path.join(ROOT, 'reference', 'make-export', 'package.json'))
 const spec = readJson(P.spec)
 const routes = spec.screens.map((s) => s.route)
-const noKit = process.env.HARNESS_SELFTEST_NO_KIT === '1' // 자가 점검 전용
 
 const write = (p, s, { keep = false } = {}) => {
   const f = path.join(APP_DIR, p)
@@ -17,8 +16,9 @@ const write = (p, s, { keep = false } = {}) => {
   console.log('생성: ' + rel(f))
 }
 
+// @make-kits/lg는 공개 npm에 없다. UI는 Design.md 사양대로 app/src/ui/에 직접 만든다
 const deps = { ...ref.dependencies }
-if (noKit) delete deps['@make-kits/lg']
+delete deps['@make-kits/lg']
 write('package.json', JSON.stringify({
   name: 'harness-app',
   private: true,

@@ -18,7 +18,6 @@ const env = {
   HARNESS_QUESTIONS: path.join(DIR, 'open-questions.md'),
   HARNESS_PAGES: path.join(DIR, 'pages.json'),
   HARNESS_REPORT_DIR: path.join(DIR, 'report'),
-  HARNESS_SELFTEST_NO_KIT: '1', // @make-kits/lg는 공개 npm에 없어 자가 점검에서는 뺀다
 }
 fs.rmSync(path.join(DIR, 'report'), { recursive: true, force: true })
 for (const f of ['spec.json', 'open-questions.md', 'pages.json']) fs.rmSync(path.join(DIR, f), { force: true })
@@ -66,8 +65,9 @@ hook('page-builder bg-white 차단', W('app/src/pages/a.tsx', '<div className="b
 hook('page-builder 13px 차단', W('app/src/a.css', '.a { padding: 13px; }', 'page-builder'), 2)
 hook('page-builder style={{}} 숫자 차단', W('app/src/pages/a.tsx', '<div style={{ padding: 13 }} />', 'page-builder'), 2)
 hook('page-builder var(--없는변수) 차단', W('app/src/a.css', '.a { color: var(--brand-x); }', 'page-builder'), 2)
+hook('page-builder @make-kits/lg 차단', W('app/src/pages/a.tsx', 'import { Button } from "@make-kits/lg"', 'page-builder'), 2)
 hook('page-builder @mui/material 차단', W('app/src/pages/a.tsx', 'import { Button } from "@mui/material"', 'page-builder'), 2)
-hook('page-builder 토큰만 쓴 코드 허용', W('app/src/pages/a.tsx', 'import { useState } from "react"\nimport clsx from "clsx"\nimport { Button } from "@make-kits/lg"\nexport default () => <div className="p-16 gap-12 rounded-full bg-bg-surface text-text-primary border border-border-default typo-body-medium bottom-0" />', 'page-builder'), 0)
+hook('page-builder 토큰만 쓴 코드 허용', W('app/src/pages/a.tsx', 'import { useState } from "react"\nimport clsx from "clsx"\nimport { Button } from "@/ui"\nexport default () => <div className="p-16 gap-12 rounded-full bg-bg-surface text-text-primary border border-border-default typo-body-medium bottom-0" />', 'page-builder'), 0)
 hook('Bash > docs/ 차단', B('echo hi > docs/x.md'), 2)
 hook('Bash rm -rf app/src 차단', B('rm -rf app/src'), 2)
 hook('Bash Set-Content reference 차단', B('Set-Content reference/x.txt "a"'), 2)

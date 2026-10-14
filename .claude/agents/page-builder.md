@@ -18,7 +18,8 @@ tools: Read, Glob, Grep, Write, Edit
 - 실패 복귀일 때는 오케스트레이터가 넘겨 준 report.json 실패 항목
 
 ## 반드시 지킬 것 (G4 훅·G5가 기계로 막는다)
-1. UI 컴포넌트는 `@make-kits/lg`에서만 가져온다. 허용 import는 harness/rules.json의 `allowedImports`와 상대 경로·`@/`뿐이다.
+1. UI 컴포넌트는 `docs/Design.md` 4장(컴포넌트 용법)의 이름·사양대로 `app/src/ui/`에 기본 태그와 토큰 클래스로 직접 만들고, 화면은 `@/ui`에서 가져다 쓴다. 이미 있는 컴포넌트는 고쳐 쓰고 같은 것을 새로 만들지 않는다. `@make-kits/lg`는 쓰지 않는다. 허용 import는 harness/rules.json의 `allowedImports`와 상대 경로·`@/`뿐이다.
+   - `reference/`는 생김새를 참고할 때만 읽는다. 코드를 복사하거나 import하지 않는다.
 2. 색은 semantic 토큰 클래스나 `var(--color-…)`로만 쓴다. `#hex`, `rgb()`, `hsl()`, 색 이름, Tailwind 기본 팔레트(`bg-white`, `text-gray-600` 등) 금지.
 3. 간격·크기·모서리는 토큰 이름 클래스만 쓴다: `p-16`, `gap-12`, `rounded-16`, `rounded-full` 등. 숫자는 tokens.json의 spacing·radius 값만 가능하다.
 4. Tailwind 임의 값 `[...]`, `(--x)` 금지. `style={{ }}`에 숫자·색 직접 쓰기 금지.

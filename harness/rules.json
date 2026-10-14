@@ -1,6 +1,6 @@
 {
   "$comment": "서비스 고유 판정 조건. 토큰 값은 여기 적지 않는다(SSOT는 docs/tokens.json). 판정 값(요금제·문구)은 harness/spec/spec.json에서 읽는다. R8 승인 후 고정, 변경은 '하네스 수정' 승인 필요.",
-  "allowedImports": ["react", "react-dom", "@make-kits/lg", "clsx"],
+  "allowedImports": ["react", "react-dom", "clsx"],
   "componentOverrides": {
     "/plans/[id]": { "OptionItem": "List/Row" }
   },
