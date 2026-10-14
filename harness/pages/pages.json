@@ -1,0 +1,132 @@
+{
+  "source": {
+    "spec": "harness/spec/spec.json",
+    "questions": "harness/spec/open-questions.md",
+    "design": "docs/Design.md",
+    "rules": "harness/rules.json"
+  },
+  "pages": [
+    {
+      "route": "/plans",
+      "file": "pages/plans/index.tsx",
+      "header": { "type": "root", "title": null, "pending": "Q13" },
+      "query": {},
+      "components": [
+        { "name": "Header", "role": "화면 상단 제목 (화면당 1개)", "props": { "Type": "root", "Title": { "pending": "Q13" } } },
+        { "name": "Logo", "role": "U+ 로고 (상단 영역, 원본 비율)", "props": {} },
+        { "name": "FilterChip", "role": "'전체' 칩 (기본 선택)", "props": { "Label": "전체", "State": "기본 selected, 다른 칩 선택 시 default" } },
+        { "name": "FilterChip", "role": "조건 칩: 데이터량 구간 (단일 선택)", "props": { "Label": { "pending": "Q1" }, "State": "선택 시 selected, 그 외 default" }, "pending": "Q1" },
+        { "name": "FilterChip", "role": "조건 칩: 속도 제한 여부 (단일 선택)", "props": { "Label": { "pending": "Q1" }, "State": "선택 시 selected, 그 외 default" }, "pending": "Q1" },
+        { "name": "Card/Plan", "role": "요금제 카드 (p01~p04, 매달 내는 금액 낮은 순)", "props": { "Name": "요금제 이름", "Desc": "기본 데이터량 + 소진 후 속도 문구(throttle 형식)", "Price": "매달 내는 금액 1개", "Discount": "할인 종료 후 금액('25개월째부터 ○원') - discount_months 있을 때만, 없으면 줄 숨김", "Original": "off", "Badge": "recommended일 때만", "Promo": "24개월 할인 있을 때만", "Sale": "24개월 할인 있을 때만", "State": "default" } },
+        { "name": "Tag", "role": "추천 표시 (recommended 요금제 카드 1개에만)", "props": { "label": { "pending": "Q13" } }, "pending": "Q13" },
+        { "name": "Chip", "role": "'24개월 할인' 표시 (할인 요금제 카드에만)", "props": { "Type": "sale", "text": "24개월 할인" } },
+        { "name": "Button", "role": "카드의 '자세히' 버튼 (상세 이동)", "props": { "Label": "자세히", "Type": "Secondary", "Size": "sm" } }
+      ],
+      "states": [
+        { "name": "기본", "desc": "'전체' 칩 selected, p01~p04 카드 4개를 매달 내는 금액 낮은 순으로 표시. 추천 Tag는 p02 카드에만, '24개월 할인' Chip과 할인 종료 후 금액은 p03에만" },
+        { "name": "조건 칩 선택", "desc": "선택한 칩 1개만 selected(aria-pressed=true), 조건에 맞는 카드만 남음. 숨겨진 카드의 추천 Tag도 함께 숨김. 조건 경계값은 미확정", "pending": "Q1" },
+        { "name": "필터 0건", "desc": "카드 영역에 '조건에 맞는 요금제가 없어요.' 표시, '전체' 칩으로 복귀 가능" }
+      ],
+      "navigation": [
+        { "trigger": "'자세히' 버튼 (카드의 버튼 외 영역은 동작 없음)", "to": "/plans/[id]", "replace": false }
+      ],
+      "markers": ["data-plan-id", "data-tag=recommended", "data-filter-chip", "aria-pressed"]
+    },
+    {
+      "route": "/plans/[id]",
+      "file": "pages/plans/[id].tsx",
+      "header": { "type": "default", "title": "요금제 이름 (plans[].name)" },
+      "query": {},
+      "params": { "id": "요금제 id (p01~p04)" },
+      "components": [
+        { "name": "Header", "role": "요금제 이름 + 뒤로 아이콘", "props": { "Type": "default", "Title": "요금제 이름" } },
+        { "name": "icon/arrowLeft", "role": "뒤로 (요금제 목록으로, 터치 영역 40x40 이상)", "props": {} },
+        { "name": "Tag", "role": "추천 표시 (recommended 요금제일 때만)", "props": { "label": { "pending": "Q13" } }, "pending": "Q13" },
+        { "name": "Card/Price", "role": "월 요금: '매달 내는 금액' 1개 강조 + 할인 종료 후 금액(할인 요금제만)", "props": { "label": "매달 내는 금액", "value": "매달 내는 금액", "desc": "'25개월째부터 ○원' - discount_months 있을 때만, 없으면 숨김" } },
+        { "name": "List/Row", "role": "기본 제공 항목: 기본 데이터량", "props": { "Type": "default", "Label": "기본 데이터량", "Value": "data_label" } },
+        { "name": "List/Row", "role": "기본 제공 항목: 소진 후 속도", "props": { "Type": "default", "Label": "소진 후 속도", "Value": "throttle 형식 문구" } },
+        { "name": "List/Row", "role": "기본 제공 항목: 통화·문자 등 그 밖의 행", "props": { "Type": "default" }, "pending": "Q2" },
+        { "name": "List/Row", "role": "포함 혜택 (OptionItem 대신, 혜택 없으면 섹션 제목 포함 전체 숨김)", "props": { "Type": "check" }, "pending": "Q3" },
+        { "name": "BottomCTA", "role": "하단 신청 영역 (매달 내는 금액 + 버튼)", "props": { "Layout": "price", "AmountLabel": "매달 내는 금액", "Amount": "매달 내는 금액" } },
+        { "name": "Button", "role": "'구독 신청하기' (BottomCTA 핵심 액션)", "props": { "Label": "구독 신청하기", "Type": "Primary", "Size": "xl" } },
+        { "name": "Button", "role": "'목록으로' (존재하지 않는 id일 때만)", "props": { "Label": "목록으로", "Type": "Primary", "Size": "lg" } }
+      ],
+      "states": [
+        { "name": "기본 (할인 없는 요금제)", "desc": "Card/Price에 매달 내는 금액 1개만, 할인 종료 후 줄 없음. 소진 후 속도 행 표시" },
+        { "name": "할인 요금제 (p03)", "desc": "매달 내는 금액 + '25개월째부터 69,000원' 2종만 표시. 정가·할인가·프로모션가 3개 동시 표시 금지" },
+        { "name": "추천 요금제 (p02)", "desc": "추천 Tag 표시. 그 외 요금제는 Tag 숨김" },
+        { "name": "혜택 없음", "desc": "포함 혜택 섹션(제목 포함) 전체 숨김", "pending": "Q3" },
+        { "name": "존재하지 않는 id", "desc": "'요금제를 찾을 수 없어요.' 안내문과 '목록으로' 버튼 표시" }
+      ],
+      "navigation": [
+        { "trigger": "뒤로 아이콘 (icon/arrowLeft)", "to": "/plans", "replace": false },
+        { "trigger": "'구독 신청하기' 버튼 (?plan=선택한 요금제 id)", "to": "/apply", "replace": false },
+        { "trigger": "'목록으로' 버튼 (존재하지 않는 id)", "to": "/plans", "replace": false }
+      ],
+      "markers": ["data-nav=back", "data-tag=recommended"]
+    },
+    {
+      "route": "/apply",
+      "file": "pages/apply/index.tsx",
+      "header": { "type": "default", "title": null, "pending": "Q13" },
+      "query": { "plan": "요금제 id" },
+      "components": [
+        { "name": "Header", "role": "화면 제목 + 뒤로 아이콘(취소 역할)", "props": { "Type": "default", "Title": { "pending": "Q13" } } },
+        { "name": "icon/arrowLeft", "role": "뒤로 = 취소 (요금제 상세로, 입력값·동의 초기화)", "props": {} },
+        { "name": "List/Row", "role": "선택한 요금제 요약: 요금제 이름", "props": { "Type": "default", "Label": "요금제", "Value": "요금제 이름" } },
+        { "name": "List/Row", "role": "선택한 요금제 요약: 매달 내는 금액", "props": { "Type": "default", "Label": "매달 내는 금액", "Value": "금액" } },
+        { "name": "List/Row", "role": "선택한 요금제 요약: 할인 종료 후 금액 (할인 요금제만)", "props": { "Type": "default", "Value": "'25개월째부터 ○원'" } },
+        { "name": "Input", "role": "이름 입력란 (blur 시 검증, 오류는 입력란 아래)", "props": { "State": "default | focus | filled | caution", "errorMessage": "name_required 또는 name_invalid일 때만 on" } },
+        { "name": "Input", "role": "휴대폰 번호 입력란 (숫자만, 하이픈 제거, blur 시 검증)", "props": { "State": "default | focus | filled | caution", "errorMessage": "phone_invalid일 때만 on" } },
+        { "name": "Checkbox", "role": "개인정보 수집·이용 동의 + '내용 보기'(수집 항목·이용 목적·보관 기간·만 14세 미만 처리)", "props": { "State": "기본 default, 체크 시 active" }, "pending": "Q4, Q5" },
+        { "name": "BottomCTA", "role": "하단 신청 영역", "props": { "Layout": "single" } },
+        { "name": "Button", "role": "'신청하기' (세 조건 충족 시 활성, 저장 중 비활성 + '신청 중이에요')", "props": { "Label": "신청하기", "Type": "Primary", "Size": "xl", "State": "Default | Disabled" } },
+        { "name": "Button", "role": "'목록으로' (plan 없음 또는 존재하지 않는 id일 때만)", "props": { "Label": "목록으로", "Type": "Primary", "Size": "lg" } }
+      ],
+      "states": [
+        { "name": "기본", "desc": "두 입력란 비어 있음, 동의 미체크, '신청하기' Disabled" },
+        { "name": "입력 오류", "desc": "이름: name_required/name_invalid, 휴대폰: phone_invalid를 각 입력란 아래에 표시 (Input State=caution)" },
+        { "name": "제출 가능", "desc": "이름·휴대폰 유효 + 동의 체크 시 '신청하기' 활성" },
+        { "name": "저장 중", "desc": "버튼 Disabled + '신청 중이에요', 추가 탭 무시. 응답 대기 최대 시간 미확정", "pending": "Q6" },
+        { "name": "저장 실패", "desc": "save_failed 문구를 신청하기 버튼 위에 표시, 입력값·동의 유지, 버튼 재활성. 오류 영역 컴포넌트 미확정", "pending": "Q7" },
+        { "name": "요금제 없음", "desc": "plan 쿼리 없음 또는 p01~p04 외 id: '요금제를 찾을 수 없어요.' + '목록으로'" }
+      ],
+      "navigation": [
+        { "trigger": "뒤로 아이콘 (취소, 입력값 초기화)", "to": "/plans/[id]", "replace": false },
+        { "trigger": "'신청하기' 버튼 (Subscription 1건 저장 후, 값 전달 방식 미확정)", "to": "/complete", "replace": false, "pending": "Q8" },
+        { "trigger": "'목록으로' 버튼 (plan 없음 또는 존재하지 않는 id)", "to": "/plans", "replace": false }
+      ],
+      "pending": ["Q4", "Q5", "Q6", "Q7", "Q8", "Q9", "Q13"],
+      "markers": ["data-nav=back", "data-field=name", "data-field=phone", "data-field=agreed_privacy", "data-error-for=name", "data-error-for=phone"]
+    },
+    {
+      "route": "/complete",
+      "file": "pages/complete/index.tsx",
+      "header": { "type": "default", "title": null, "pending": "Q13" },
+      "query": { "pending": "Q8" },
+      "components": [
+        { "name": "Header", "role": "화면 제목 + 뒤로 아이콘", "props": { "Type": "default", "Title": { "pending": "Q13" } } },
+        { "name": "icon/arrowLeft", "role": "뒤로 (요금제 목록으로, 기록 대체)", "props": {} },
+        { "name": "icon/doneMark", "role": "완료 아이콘 + '구독 신청이 완료됐어요' 문구", "props": {} },
+        { "name": "List/Row", "role": "신청 번호", "props": { "Type": "default", "Label": "신청 번호", "Value": "Subscription.id" }, "pending": "Q10" },
+        { "name": "List/Row", "role": "요금제 이름 (data-row=plan-name)", "props": { "Type": "default", "Label": "요금제", "Value": "요금제 이름" } },
+        { "name": "List/Row", "role": "매달 내는 금액 (data-row=monthly-price)", "props": { "Type": "default", "Label": "매달 내는 금액", "Value": "금액" } },
+        { "name": "List/Row", "role": "신청 일시", "props": { "Type": "default", "Label": "신청 일시", "Value": "created_at" }, "pending": "Q11" },
+        { "name": "List/Row", "role": "신청자 이름, 마스킹 (data-row=applicant)", "props": { "Type": "default", "Label": "신청자", "Value": "첫 글자 + 나머지 *" } },
+        { "name": "BottomCTA", "role": "하단 액션 영역", "props": { "Layout": "single" } },
+        { "name": "Button", "role": "'요금제 더 보기'", "props": { "Label": "요금제 더 보기", "Type": "Primary", "Size": "xl" } }
+      ],
+      "states": [
+        { "name": "기본", "desc": "방금 저장한 Subscription 값으로 신청 내역 표시. 신청자 이름은 마스킹, 휴대폰 번호는 표시하지 않음" },
+        { "name": "저장 값 없음", "desc": "새로고침·주소 직접 진입 시 요금제 목록으로 이동", "pending": "Q8" }
+      ],
+      "navigation": [
+        { "trigger": "뒤로 아이콘 (icon/arrowLeft, 이전 기록 대체)", "to": "/plans", "replace": true },
+        { "trigger": "'요금제 더 보기' 버튼", "to": "/plans", "replace": false, "pending": "Q14" },
+        { "trigger": "방금 저장한 값이 없음 (새로고침, 주소로 직접 진입)", "to": "/plans", "replace": false, "pending": "Q14" }
+      ],
+      "pending": ["Q8", "Q10", "Q11", "Q13", "Q14"],
+      "markers": ["data-nav=back", "data-row=plan-name", "data-row=monthly-price", "data-row=applicant"]
+    }
+  ]
+}
