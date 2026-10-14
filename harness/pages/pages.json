@@ -92,7 +92,7 @@
       ],
       "navigation": [
         { "trigger": "뒤로 아이콘 (취소, 입력값 초기화)", "to": "/plans/[id]", "replace": false },
-        { "trigger": "'신청하기' 버튼 (Subscription 1건을 브라우저 메모리 저장소에 저장 후, 값은 앱 상태로 전달. URL 쿼리·sessionStorage·localStorage 사용 안 함, Q8)", "to": "/complete", "replace": false },
+        { "trigger": "'신청하기' 버튼 (Subscription 1건을 브라우저 메모리 저장소에 저장 후, 값은 앱 상태로 전달. URL 쿼리·sessionStorage·localStorage 사용 안 함, Q8)", "to": "/complete", "replace": true },
         { "trigger": "'목록으로' 버튼 (plan 없음 또는 존재하지 않는 id)", "to": "/plans", "replace": false }
       ],
       "markers": ["data-nav=back", "data-field=name", "data-field=phone", "data-field=agreed_privacy", "data-error-for=name", "data-error-for=phone"]
