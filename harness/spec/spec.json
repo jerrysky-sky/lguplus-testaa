@@ -225,7 +225,7 @@
       ],
       "navigation": [
         { "trigger": "뒤로 아이콘 (icon/arrowLeft, 취소 역할, 입력값 초기화)", "to": "/plans/[id]", "replace": false },
-        { "trigger": "'신청하기' 버튼 (Subscription 1건 저장 후)", "to": "/complete", "replace": false },
+        { "trigger": "'신청하기' 버튼 (Subscription 1건 저장 후)", "to": "/complete", "replace": true, "basis": ["PRD:L67", "PRD:L186", "PRD:L219"] },
         { "trigger": "'목록으로' 버튼 (id 없음 또는 존재하지 않는 id)", "to": "/plans", "replace": false }
       ]
     },
