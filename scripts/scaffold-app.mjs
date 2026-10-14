@@ -66,7 +66,24 @@ write('index.html', `<!doctype html>
 </html>
 `)
 
-write('src/vite-env.d.ts', '/// <reference types="vite/client" />\n')
+// Supabase 연결값 빈 틀. 값은 사람이 채우고 git에는 올리지 않는다(.gitignore의 .env*.local)
+write('.env.local', `# Supabase 프로젝트 연결값 (Supabase 대시보드 > Project Settings > API)
+# 브라우저에 노출되는 값이므로 anon(public) 키만 넣는다. service_role 키는 넣지 않는다.
+VITE_SUPABASE_URL=
+VITE_SUPABASE_ANON_KEY=
+`, { keep: true })
+
+write('src/vite-env.d.ts', `/// <reference types="vite/client" />
+
+interface ImportMetaEnv {
+  readonly VITE_SUPABASE_URL: string
+  readonly VITE_SUPABASE_ANON_KEY: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+`)
 write('src/main.tsx', `// 자동 생성 (scripts/scaffold-app.mjs)
 import React from 'react'
 import ReactDOM from 'react-dom/client'
