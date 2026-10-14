@@ -74,7 +74,7 @@ export default function Page() {
         monthly_price: plan.monthly_price,
         agreed_privacy: agreed,
       })
-      navigate('/complete')
+      navigate('/complete', { replace: true })
     } catch {
       savingRef.current = false
       setSaving(false)
