@@ -1,0 +1,30 @@
+{
+  "gate": "G3-tokens",
+  "route": null,
+  "generatedAt": "2026-10-14T06:04:13.786Z",
+  "status": "complete",
+  "returnTo": null,
+  "streak": 0,
+  "results": [
+    {
+      "id": "hash",
+      "status": "pass",
+      "detail": "기록된 해시와 tokens.json 해시 비교"
+    },
+    {
+      "id": "var-count",
+      "status": "pass",
+      "detail": "CSS 변수 86개 / 토큰 86개"
+    },
+    {
+      "id": "text-styles",
+      "status": "pass",
+      "detail": "typo-* 15개 / 텍스트 스타일 15개"
+    },
+    {
+      "id": "meta-note",
+      "status": "pass",
+      "detail": "참고: meta.tokenCount 84 ≠ 실제 86 (docs 수정은 사람 몫)"
+    }
+  ]
+}

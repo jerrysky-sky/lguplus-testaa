@@ -44,8 +44,11 @@ if (r5.code) process.exit(r5.code)
 
 // ---------- G6 build·lint ----------
 const g6 = new Report('G6-build', route)
+// 판정용 빌드는 Supabase 연결값을 비워 메모리 저장소로 돈다(G7 신청 흐름이 실제 DB에 쌓이지 않게).
+// Vite는 이미 있는 환경변수를 .env.local보다 먼저 쓴다.
+const offline = { VITE_PUBLIC_SUPABASE_URL: '', VITE_PUBLIC_SUPABASE_PUBLISHABLE_KEY: '' }
 const sh = (cmd) => {
-  const p = spawnSync(cmd, { cwd: APP_DIR, shell: true, encoding: 'utf8' })
+  const p = spawnSync(cmd, { cwd: APP_DIR, shell: true, encoding: 'utf8', env: { ...process.env, ...offline } })
   return { ok: p.status === 0, out: (p.stdout + p.stderr).trim().split('\n').slice(-15).join('\n') }
 }
 if (!exists(path.join(APP_DIR, 'node_modules'))) {

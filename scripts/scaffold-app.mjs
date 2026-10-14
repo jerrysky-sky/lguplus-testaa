@@ -7,7 +7,6 @@ import { ROOT, APP_DIR, P, exists, readJson, rel } from './lib/common.mjs'
 const ref = readJson(path.join(ROOT, 'reference', 'make-export', 'package.json'))
 const spec = readJson(P.spec)
 const routes = spec.screens.map((s) => s.route)
-const noKit = process.env.HARNESS_SELFTEST_NO_KIT === '1' // 자가 점검 전용
 
 const write = (p, s, { keep = false } = {}) => {
   const f = path.join(APP_DIR, p)
@@ -17,8 +16,11 @@ const write = (p, s, { keep = false } = {}) => {
   console.log('생성: ' + rel(f))
 }
 
+// @make-kits/lg는 공개 npm에 없다. UI는 Design.md 사양대로 app/src/ui/에 직접 만든다
 const deps = { ...ref.dependencies }
-if (noKit) delete deps['@make-kits/lg']
+delete deps['@make-kits/lg']
+// 신청 저장소 (spec Q9). 판정 빌드에서는 연결값을 비워 메모리 저장소로 돈다(gate-screen.mjs)
+deps['@supabase/supabase-js'] = '2.117.2'
 write('package.json', JSON.stringify({
   name: 'harness-app',
   private: true,
@@ -66,7 +68,35 @@ write('index.html', `<!doctype html>
 </html>
 `)
 
-write('src/vite-env.d.ts', '/// <reference types="vite/client" />\n')
+// Vercel 배포 설정 (Root Directory = app). SPA라 모든 경로를 index.html로 돌린다
+write('vercel.json', JSON.stringify({
+  $schema: 'https://openapi.vercel.sh/vercel.json',
+  framework: 'vite',
+  installCommand: 'npm ci',
+  buildCommand: 'npm run build',
+  outputDirectory: 'dist',
+  rewrites: [{ source: '/(.*)', destination: '/index.html' }],
+}, null, 2) + '\n')
+
+// Supabase 연결값 빈 틀. 값은 사람이 채우고 git에는 올리지 않는다(.gitignore의 .env*.local)
+write('.env.local', `# Supabase 프로젝트 연결값 (Supabase 대시보드 > Project Settings > API)
+# 브라우저에 노출되는 값이므로 publishable(anon) 키만 넣는다. secret·service_role 키는 넣지 않는다.
+# 비워 두면 앱은 브라우저 메모리 저장소를 쓴다.
+VITE_PUBLIC_SUPABASE_URL=
+VITE_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+`, { keep: true })
+
+write('src/vite-env.d.ts', `/// <reference types="vite/client" />
+
+interface ImportMetaEnv {
+  readonly VITE_PUBLIC_SUPABASE_URL?: string
+  readonly VITE_PUBLIC_SUPABASE_PUBLISHABLE_KEY?: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
+`)
 write('src/main.tsx', `// 자동 생성 (scripts/scaffold-app.mjs)
 import React from 'react'
 import ReactDOM from 'react-dom/client'

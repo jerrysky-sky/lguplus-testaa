@@ -1,0 +1,25 @@
+{
+  "gate": "G5-static",
+  "route": null,
+  "generatedAt": "2026-10-14T06:04:14.188Z",
+  "status": "complete",
+  "returnTo": null,
+  "streak": 0,
+  "results": [
+    {
+      "id": "token-and-import",
+      "status": "pass",
+      "detail": "23개 파일, 위반 0건"
+    },
+    {
+      "id": "route-count",
+      "status": "pass",
+      "detail": "라우터 4개 / spec 4개"
+    },
+    {
+      "id": "A-original-off",
+      "status": "pass",
+      "detail": "Card/Plan Original(정가) 속성 사용: 0건"
+    }
+  ]
+}

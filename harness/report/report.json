@@ -1,0 +1,390 @@
+{
+  "generatedAt": "2026-10-14T06:05:32.849Z",
+  "status": "partial",
+  "returnTo": null,
+  "notRun": [],
+  "summary": {
+    "pass": 57,
+    "fail": 0,
+    "pending": 3
+  },
+  "pending": [
+    {
+      "id": "ox8-filter:보류",
+      "question": "필터 칩 라벨·경계값"
+    },
+    {
+      "id": "ox14-error-position:보류",
+      "question": "저장소·저장 실패 영역 컴포넌트"
+    },
+    {
+      "id": "ox15-saving:보류",
+      "question": "저장소·저장 응답 대기 시간"
+    }
+  ],
+  "results": [
+    {
+      "gate": "G1-spec",
+      "id": "routes",
+      "status": "pass",
+      "detail": "기대 /plans /plans/[id] /apply /complete / spec /plans /plans/[id] /apply /complete"
+    },
+    {
+      "gate": "G1-spec",
+      "id": "plans-count",
+      "status": "pass",
+      "detail": "기대 4개 / spec 4개"
+    },
+    {
+      "gate": "G1-spec",
+      "id": "plan-p01",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "gate": "G1-spec",
+      "id": "plan-p02",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "gate": "G1-spec",
+      "id": "plan-p03",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "gate": "G1-spec",
+      "id": "plan-p04",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "gate": "G1-spec",
+      "id": "rules",
+      "status": "pass",
+      "detail": "PRD 15개 / spec 15개"
+    },
+    {
+      "gate": "G1-spec",
+      "id": "messages",
+      "status": "pass",
+      "detail": "29개"
+    },
+    {
+      "gate": "G1-spec",
+      "id": "open-questions",
+      "status": "pass",
+      "detail": "PRD \"확인 필요\" 14줄 / 빠진 줄: 없음"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "route-count",
+      "status": "pass",
+      "detail": "기대 4개(/plans /plans/[id] /apply /complete) / pages 4개(/plans /plans/[id] /apply /complete)"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "components-known /plans",
+      "status": "pass",
+      "detail": "9개"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "components-cover /plans",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "gate": "G2-pages",
+      "id": "header /plans",
+      "status": "pass",
+      "detail": "Header 1개"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "navigation /plans",
+      "status": "pass",
+      "detail": "1개"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "markers /plans",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "gate": "G2-pages",
+      "id": "components-known /plans/[id]",
+      "status": "pass",
+      "detail": "10개"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "components-cover /plans/[id]",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "gate": "G2-pages",
+      "id": "header /plans/[id]",
+      "status": "pass",
+      "detail": "Header 1개"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "navigation /plans/[id]",
+      "status": "pass",
+      "detail": "3개"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "markers /plans/[id]",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "gate": "G2-pages",
+      "id": "components-known /apply",
+      "status": "pass",
+      "detail": "11개"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "components-cover /apply",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "gate": "G2-pages",
+      "id": "header /apply",
+      "status": "pass",
+      "detail": "Header 1개"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "navigation /apply",
+      "status": "pass",
+      "detail": "3개"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "markers /apply",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "gate": "G2-pages",
+      "id": "components-known /complete",
+      "status": "pass",
+      "detail": "10개"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "components-cover /complete",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "gate": "G2-pages",
+      "id": "header /complete",
+      "status": "pass",
+      "detail": "Header 1개"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "navigation /complete",
+      "status": "pass",
+      "detail": "3개"
+    },
+    {
+      "gate": "G2-pages",
+      "id": "markers /complete",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "gate": "G3-tokens",
+      "id": "hash",
+      "status": "pass",
+      "detail": "기록된 해시와 tokens.json 해시 비교"
+    },
+    {
+      "gate": "G3-tokens",
+      "id": "var-count",
+      "status": "pass",
+      "detail": "CSS 변수 86개 / 토큰 86개"
+    },
+    {
+      "gate": "G3-tokens",
+      "id": "text-styles",
+      "status": "pass",
+      "detail": "typo-* 15개 / 텍스트 스타일 15개"
+    },
+    {
+      "gate": "G3-tokens",
+      "id": "meta-note",
+      "status": "pass",
+      "detail": "참고: meta.tokenCount 84 ≠ 실제 86 (docs 수정은 사람 몫)"
+    },
+    {
+      "gate": "G5-static",
+      "id": "token-and-import",
+      "status": "pass",
+      "detail": "23개 파일, 위반 0건"
+    },
+    {
+      "gate": "G5-static",
+      "id": "route-count",
+      "status": "pass",
+      "detail": "라우터 4개 / spec 4개"
+    },
+    {
+      "gate": "G5-static",
+      "id": "A-original-off",
+      "status": "pass",
+      "detail": "Card/Plan Original(정가) 속성 사용: 0건"
+    },
+    {
+      "gate": "G6-build",
+      "id": "tsc",
+      "status": "pass",
+      "detail": "npx --no-install tsc --noEmit"
+    },
+    {
+      "gate": "G6-build",
+      "id": "vite-build",
+      "status": "pass",
+      "detail": "npx --no-install vite build"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox1-card-count",
+      "status": "pass",
+      "detail": "요금제 카드 정확히 4개(p01~p04)"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox2-recommended",
+      "status": "pass",
+      "detail": "추천 Tag 1개, 추천 요금제 카드에만"
+    },
+    {
+      "gate": "G7-render",
+      "id": "A-price-card",
+      "status": "pass",
+      "detail": "★A 카드 금액: 할인 없는 요금제 1개, 할인 요금제 2개, 할인 종료 후 줄은 할인 요금제만"
+    },
+    {
+      "gate": "G7-render",
+      "id": "B-throttle-card",
+      "status": "pass",
+      "detail": "★B '무제한' 요금제 카드에 소진 후 속도 문구 1개"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox9-order",
+      "status": "pass",
+      "detail": "카드가 매달 내는 금액 낮은 순"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox8-filter",
+      "status": "pass",
+      "detail": "기본 '전체' 선택, 칩 1개만 선택, '전체'로 4개 복귀"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox8-filter:보류",
+      "status": "pending",
+      "detail": "칩 라벨·데이터량 경계값 미확정 → 조건별 카드 결과는 판정 보류",
+      "question": "필터 칩 라벨·경계값"
+    },
+    {
+      "gate": "G7-render",
+      "id": "A-price-detail",
+      "status": "pass",
+      "detail": "★A 상세 금액 종류: 할인 없는 요금제 1종, 할인 요금제 2종"
+    },
+    {
+      "gate": "G7-render",
+      "id": "B-throttle-detail",
+      "status": "pass",
+      "detail": "★B '무제한' 요금제 상세에 소진 후 속도 문구 1개"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox13-invalid-detail",
+      "status": "pass",
+      "detail": "없는 id 상세 → 안내문 + '목록으로'"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox13-invalid-apply",
+      "status": "pass",
+      "detail": "id 없음·없는 id 신청 → 안내문 + '목록으로'"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox6-cta-disabled",
+      "status": "pass",
+      "detail": "이름·휴대폰·동의 중 하나라도 비면 신청하기 비활성"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox14-error-position",
+      "status": "pass",
+      "detail": "이름·휴대폰 오류 문구가 해당 입력란 아래"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox14-error-position:보류",
+      "status": "pending",
+      "detail": "저장 실패 문구 위치는 저장소 미확정으로 보류",
+      "question": "저장소·저장 실패 영역 컴포넌트"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox10-back-reset",
+      "status": "pass",
+      "detail": "뒤로 → 요금제 상세, 다시 들어오면 입력값 초기화"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox15-saving",
+      "status": "pass",
+      "detail": "신청하기 첫 탭 직후 다시 눌리지 않음"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox15-saving:보류",
+      "status": "pending",
+      "detail": "저장 실패 시 입력값 유지는 저장소 미확정으로 보류",
+      "question": "저장소·저장 응답 대기 시간"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox7-complete-match",
+      "status": "pass",
+      "detail": "완료 화면 요금제 이름·매달 내는 금액이 선택한 요금제와 같음"
+    },
+    {
+      "gate": "G7-render",
+      "id": "C-mask",
+      "status": "pass",
+      "detail": "★C 신청자 이름 원문 0건, 첫 글자+* 형식, 휴대폰 번호 0건"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox11-complete-nav",
+      "status": "pass",
+      "detail": "뒤로·'요금제 더 보기' → /plans, /apply로 돌아가지 않음"
+    },
+    {
+      "gate": "G7-render",
+      "id": "ox12-complete-direct",
+      "status": "pass",
+      "detail": "직접 진입·새로고침 → /plans"
+    }
+  ]
+}

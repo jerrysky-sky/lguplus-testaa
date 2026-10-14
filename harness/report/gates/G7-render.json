@@ -1,0 +1,118 @@
+{
+  "gate": "G7-render",
+  "route": null,
+  "generatedAt": "2026-10-14T06:05:32.787Z",
+  "status": "partial",
+  "returnTo": null,
+  "streak": 0,
+  "results": [
+    {
+      "id": "ox1-card-count",
+      "status": "pass",
+      "detail": "요금제 카드 정확히 4개(p01~p04)"
+    },
+    {
+      "id": "ox2-recommended",
+      "status": "pass",
+      "detail": "추천 Tag 1개, 추천 요금제 카드에만"
+    },
+    {
+      "id": "A-price-card",
+      "status": "pass",
+      "detail": "★A 카드 금액: 할인 없는 요금제 1개, 할인 요금제 2개, 할인 종료 후 줄은 할인 요금제만"
+    },
+    {
+      "id": "B-throttle-card",
+      "status": "pass",
+      "detail": "★B '무제한' 요금제 카드에 소진 후 속도 문구 1개"
+    },
+    {
+      "id": "ox9-order",
+      "status": "pass",
+      "detail": "카드가 매달 내는 금액 낮은 순"
+    },
+    {
+      "id": "ox8-filter",
+      "status": "pass",
+      "detail": "기본 '전체' 선택, 칩 1개만 선택, '전체'로 4개 복귀"
+    },
+    {
+      "id": "ox8-filter:보류",
+      "status": "pending",
+      "detail": "칩 라벨·데이터량 경계값 미확정 → 조건별 카드 결과는 판정 보류",
+      "question": "필터 칩 라벨·경계값"
+    },
+    {
+      "id": "A-price-detail",
+      "status": "pass",
+      "detail": "★A 상세 금액 종류: 할인 없는 요금제 1종, 할인 요금제 2종"
+    },
+    {
+      "id": "B-throttle-detail",
+      "status": "pass",
+      "detail": "★B '무제한' 요금제 상세에 소진 후 속도 문구 1개"
+    },
+    {
+      "id": "ox13-invalid-detail",
+      "status": "pass",
+      "detail": "없는 id 상세 → 안내문 + '목록으로'"
+    },
+    {
+      "id": "ox13-invalid-apply",
+      "status": "pass",
+      "detail": "id 없음·없는 id 신청 → 안내문 + '목록으로'"
+    },
+    {
+      "id": "ox6-cta-disabled",
+      "status": "pass",
+      "detail": "이름·휴대폰·동의 중 하나라도 비면 신청하기 비활성"
+    },
+    {
+      "id": "ox14-error-position",
+      "status": "pass",
+      "detail": "이름·휴대폰 오류 문구가 해당 입력란 아래"
+    },
+    {
+      "id": "ox14-error-position:보류",
+      "status": "pending",
+      "detail": "저장 실패 문구 위치는 저장소 미확정으로 보류",
+      "question": "저장소·저장 실패 영역 컴포넌트"
+    },
+    {
+      "id": "ox10-back-reset",
+      "status": "pass",
+      "detail": "뒤로 → 요금제 상세, 다시 들어오면 입력값 초기화"
+    },
+    {
+      "id": "ox15-saving",
+      "status": "pass",
+      "detail": "신청하기 첫 탭 직후 다시 눌리지 않음"
+    },
+    {
+      "id": "ox15-saving:보류",
+      "status": "pending",
+      "detail": "저장 실패 시 입력값 유지는 저장소 미확정으로 보류",
+      "question": "저장소·저장 응답 대기 시간"
+    },
+    {
+      "id": "ox7-complete-match",
+      "status": "pass",
+      "detail": "완료 화면 요금제 이름·매달 내는 금액이 선택한 요금제와 같음"
+    },
+    {
+      "id": "C-mask",
+      "status": "pass",
+      "detail": "★C 신청자 이름 원문 0건, 첫 글자+* 형식, 휴대폰 번호 0건"
+    },
+    {
+      "id": "ox11-complete-nav",
+      "status": "pass",
+      "detail": "뒤로·'요금제 더 보기' → /plans, /apply로 돌아가지 않음"
+    },
+    {
+      "id": "ox12-complete-direct",
+      "status": "pass",
+      "detail": "직접 진입·새로고침 → /plans"
+    }
+  ]
+}
