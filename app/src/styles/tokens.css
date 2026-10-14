@@ -1,0 +1,202 @@
+/* 자동 생성 파일 — 직접 수정 금지. node scripts/gen-tokens.mjs 로 다시 만든다. */
+/* source: docs/tokens.json sha256:ab3403fde81785c075425707d7e3ad257a23aab3a733a67364c30ccf96e34733 */
+
+@theme static {
+  --color-*: initial;
+  --spacing-*: initial;
+  --radius-*: initial;
+  --text-*: initial;
+  --font-*: initial;
+  --color-gray-950: #000000;
+  --color-gray-900: #181A1B;
+  --color-gray-800: #2D2D2D;
+  --color-gray-600: #66707A;
+  --color-gray-500: #878787;
+  --color-gray-400: #B7BDC4;
+  --color-gray-300: #D9DCDF;
+  --color-gray-200: #EFF1F3;
+  --color-gray-100: #F7F7F7;
+  --color-gray-0: #FFFFFF;
+  --color-pink-500: #FF2E98;
+  --color-pink-600: #E6007E;
+  --color-pink-50: #FFF5FA;
+  --color-pink-25: #FFF8F5;
+  --color-red-500: #E30036;
+  --color-red-50: #FFF0F3;
+  --color-black-10: #0000001A;
+  --color-brand-gray: #6B6B6B;
+  --color-brand-red: #A50034;
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-tertiary: var(--color-gray-500);
+  --color-text-on-dark: var(--color-gray-0);
+  --color-text-accent: var(--color-pink-500);
+  --color-text-error: var(--color-red-500);
+  --color-text-placeholder: var(--color-gray-400);
+  --color-text-on-disabled: var(--color-gray-600);
+  --color-bg-surface: var(--color-gray-0);
+  --color-bg-default: var(--color-gray-100);
+  --color-bg-subtle: var(--color-gray-200);
+  --color-bg-inverse: var(--color-gray-800);
+  --color-bg-accent-subtle: var(--color-pink-50);
+  --color-bg-error-subtle: var(--color-red-50);
+  --color-border-default: var(--color-gray-300);
+  --color-border-subtle: var(--color-gray-200);
+  --color-border-strong: var(--color-gray-900);
+  --color-border-divider: var(--color-black-10);
+  --color-border-focus: var(--color-pink-500);
+  --color-border-error: var(--color-red-500);
+  --color-fill-primary: var(--color-pink-500);
+  --color-fill-secondary: var(--color-gray-900);
+  --color-fill-tertiary: var(--color-gray-200);
+  --color-fill-disabled: var(--color-gray-300);
+  --color-fill-disabled-strong: var(--color-gray-400);
+  --color-fill-primary-hover: var(--color-pink-600);
+  --color-icon-default: var(--color-gray-600);
+  --color-icon-strong: var(--color-gray-900);
+  --color-border-medium: var(--color-gray-600);
+  --color-surface-default: var(--color-gray-0);
+  --color-icon-accent: var(--color-pink-500);
+  --color-icon-on-dark: var(--color-gray-0);
+  --color-icon-disabled: var(--color-gray-300);
+  --color-icon-error: var(--color-red-500);
+  --color-icon-primary: var(--color-gray-950);
+  --color-brand-primary: var(--color-pink-500);
+  --font-family-font: "Pretendard Variable", sans-serif;
+  --text-heading-h1: 32px;
+  --text-heading-h2: 28px;
+  --text-heading-h3: 24px;
+  --text-heading-h4: 20px;
+  --text-subtitle: 18px;
+  --text-body: 16px;
+  --text-body-small: 14px;
+  --text-caption: 13px;
+  --text-caption-mini: 10px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-80: 80px;
+  --spacing-58: 58px;
+  --spacing-390: 390px;
+  --spacing-10: 10px;
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-32: 32px;
+  --radius-full: 9999px;
+}
+
+@utility typo-heading-h1 {
+  font-family: var(--font-family-font);
+  font-size: var(--text-heading-h1);
+  line-height: 44px;
+  font-weight: 700;
+  letter-spacing: 0%;
+}
+@utility typo-heading-h2 {
+  font-family: var(--font-family-font);
+  font-size: var(--text-heading-h2);
+  line-height: 40px;
+  font-weight: 700;
+  letter-spacing: 0%;
+}
+@utility typo-heading-h3 {
+  font-family: var(--font-family-font);
+  font-size: var(--text-heading-h3);
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: 0%;
+}
+@utility typo-heading-h4 {
+  font-family: var(--font-family-font);
+  font-size: var(--text-heading-h4);
+  line-height: 28px;
+  font-weight: 500;
+  letter-spacing: 0%;
+}
+@utility typo-subtitle-bold {
+  font-family: var(--font-family-font);
+  font-size: var(--text-subtitle);
+  line-height: 26px;
+  font-weight: 700;
+  letter-spacing: 0%;
+}
+@utility typo-subtitle-default {
+  font-family: var(--font-family-font);
+  font-size: var(--text-subtitle);
+  line-height: 26px;
+  font-weight: 600;
+  letter-spacing: 0%;
+}
+@utility typo-body-strong {
+  font-family: var(--font-family-font);
+  font-size: var(--text-body);
+  line-height: 24px;
+  font-weight: 600;
+  letter-spacing: 0%;
+}
+@utility typo-body-medium {
+  font-family: var(--font-family-font);
+  font-size: var(--text-body);
+  line-height: 24px;
+  font-weight: 500;
+  letter-spacing: 0%;
+}
+@utility typo-body-small-strong {
+  font-family: var(--font-family-font);
+  font-size: var(--text-body-small);
+  line-height: 21px;
+  font-weight: 600;
+  letter-spacing: 0%;
+}
+@utility typo-body-small-medium {
+  font-family: var(--font-family-font);
+  font-size: var(--text-body-small);
+  line-height: 21px;
+  font-weight: 500;
+  letter-spacing: 0%;
+}
+@utility typo-caption-bold {
+  font-family: var(--font-family-font);
+  font-size: var(--text-caption);
+  line-height: 18px;
+  font-weight: 700;
+  letter-spacing: 0%;
+}
+@utility typo-caption-medium {
+  font-family: var(--font-family-font);
+  font-size: var(--text-caption);
+  line-height: 18px;
+  font-weight: 500;
+  letter-spacing: 0%;
+}
+@utility typo-caption-small-bold {
+  font-family: var(--font-family-font);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 0%;
+}
+@utility typo-caption-small {
+  font-family: var(--font-family-font);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0%;
+}
+@utility typo-caption-mini {
+  font-family: var(--font-family-font);
+  font-size: var(--text-caption-mini);
+  line-height: 14px;
+  font-weight: 600;
+  letter-spacing: 0%;
+}
