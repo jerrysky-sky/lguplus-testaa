@@ -27,7 +27,13 @@
             "표시 항목: '전체' 칩과 조건 칩. 조건 칩은 데이터량 구간과 속도 제한 여부 두 종류이며, 칩 라벨과 데이터량 구간 경계값은 **확인 필요**",
             "기본 상태: '전체' 칩이 선택되어 있고 4개 카드가 모두 표시된다.",
             "동작: 한 번에 칩 1개만 선택할 수 있다(단일 선택). 칩을 누르면 조건에 맞는 카드만 남고, 선택한 칩이 선택 상태로 바뀐다. '전체'를 누르면 4개 카드로 돌아간다.",
-            "조건에 맞는 카드가 0건이면 카드 영역에 \"조건에 맞는 요금제가 없어요.\"를 표시하고, '전체' 칩으로 돌아갈 수 있다."
+            "조건에 맞는 카드가 0건이면 카드 영역에 \"조건에 맞는 요금제가 없어요.\"를 표시하고, '전체' 칩으로 돌아갈 수 있다.",
+            "(Q1 답) 칩 순서: '전체', '10GB 이하', '속도 제한 없음'. '10GB 이하' 조건 data_gb ≤ 10, '속도 제한 없음' 조건 throttle_mbps가 없음(무제한)."
+          ],
+          "filters": [
+            { "order": 1, "key": "all", "labelKey": "filter_all", "condition": "모든 요금제" },
+            { "order": 2, "key": "data_10gb_or_less", "labelKey": "filter_data_10gb_or_less", "condition": "data_gb ≤ 10" },
+            { "order": 3, "key": "no_throttle", "labelKey": "filter_no_throttle", "condition": "throttle_mbps가 없음(무제한)" }
           ]
         },
         {
@@ -35,7 +41,8 @@
           "title": "추천 표시 (Tag)",
           "details": [
             "표시 항목: 추천 Tag",
-            "기본 상태: p02(데일리 50GB) 카드 1개에만 표시한다. 필터로 p02가 숨겨지면 추천 Tag도 함께 숨겨진다."
+            "기본 상태: p02(데일리 50GB) 카드 1개에만 표시한다. 필터로 p02가 숨겨지면 추천 Tag도 함께 숨겨진다.",
+            "(Q12·Q13 답) 선정 기준은 정하지 않고 Plan.recommended(p02만 true)를 그대로 쓴다. Tag 라벨은 messages.recommended_tag(\"추천\")."
           ]
         },
         {
@@ -57,7 +64,8 @@
           "no": 6,
           "title": "헤더·로고 (Header + Logo)",
           "details": [
-            "표시 항목: 화면 제목(Header `root` 유형), U+ 로고"
+            "표시 항목: 화면 제목(Header `root` 유형), U+ 로고",
+            "(Q13 답) 화면 제목: messages.header_title_plans(\"요금제\")"
           ]
         }
       ],
@@ -101,7 +109,8 @@
           "title": "기본 제공 항목 (List/Row)",
           "details": [
             "표시 항목: 기본 데이터량, 소진 후 속도(\"소진 후 ○Mbps로 제한\" 또는 \"속도 제한 없음\")",
-            "통화·문자 등 그 밖의 행: **확인 필요**"
+            "통화·문자 등 그 밖의 행: **확인 필요**",
+            "(Q2 답) 통화·문자 등 그 밖의 행은 표시하지 않는다. 기본 데이터량, 소진 후 속도 2행만 둔다."
           ]
         },
         {
@@ -116,8 +125,10 @@
           "title": "포함 혜택 (List/Row, Type=check)",
           "details": [
             "표시 항목: **확인 필요** (인터뷰에서 혜택 내용이 나오지 않음). 선택 동작이 없는 정보 표시이므로 OptionItem 대신 List/Row(check)를 쓴다.",
-            "기본 상태: 표시할 혜택이 없으면 섹션 제목을 포함해 섹션 전체를 숨긴다."
-          ]
+            "기본 상태: 표시할 혜택이 없으면 섹션 제목을 포함해 섹션 전체를 숨긴다.",
+            "(Q3 답) p01~p04 모두 표시할 혜택 없음 → 섹션 전체를 숨긴다. 혜택이 생기면 쓸 섹션 제목은 messages.benefits_section_title(\"포함 혜택\")."
+          ],
+          "benefitsByPlan": { "p01": [], "p02": [], "p03": [], "p04": [] }
         },
         {
           "no": 6,
@@ -156,7 +167,8 @@
           "no": 1,
           "title": "헤더 (Header + icon/arrowLeft)",
           "details": [
-            "동작: 뒤로 아이콘이 취소 역할을 한다. 누르면 요금제 상세(`/plans/[id]`)로 이동하고, 입력한 이름·휴대폰 번호·동의 체크는 유지하지 않고 초기화한다."
+            "동작: 뒤로 아이콘이 취소 역할을 한다. 누르면 요금제 상세(`/plans/[id]`)로 이동하고, 입력한 이름·휴대폰 번호·동의 체크는 유지하지 않고 초기화한다.",
+            "(Q13 답) 화면 제목: messages.header_title_apply(\"구독 신청\")"
           ]
         },
         {
@@ -186,7 +198,9 @@
             "수집 항목: 이름, 휴대폰 번호",
             "이용 목적: 구독 신청 접수와 신청 결과 안내",
             "보관 기간: **확인 필요**",
-            "만 14세 미만 사용자의 처리 방식: **확인 필요**"
+            "만 14세 미만 사용자의 처리 방식: **확인 필요**",
+            "(Q4 답) 신청 값은 브라우저 메모리에만 두고 서버에 보관하지 않는다. '내용 보기'에 보관 기간 줄은 표시하지 않는다. — 정책 확인 필요",
+            "(Q5 답) 연령 확인·법정대리인 동의 화면을 추가하지 않고, '내용 보기'에도 관련 문구를 표시하지 않는다. — 정책 확인 필요"
           ]
         },
         {
@@ -197,7 +211,9 @@
             "동작: 세 조건을 모두 채우면 버튼이 활성화된다. 누르면 Subscription 1건을 저장하고 신청 완료(`/complete`)로 이동한다.",
             "저장 중: 버튼을 비활성으로 바꾸고 \"신청 중이에요\" 문구를 표시한다. 저장이 끝나기 전의 추가 탭은 무시한다(중복 제출 방지).",
             "저장 실패 시: 입력값과 동의 체크를 유지하고, 버튼을 다시 활성화해 재시도할 수 있게 한다. 저장 응답을 기다리는 최대 시간은 **확인 필요**",
-            "같은 휴대폰 번호·같은 요금제의 반복 신청도 막지 않는다(별도 신청 1건으로 저장)."
+            "같은 휴대폰 번호·같은 요금제의 반복 신청도 막지 않는다(별도 신청 1건으로 저장).",
+            "(Q6 답) 저장 응답 대기에 별도 시간 제한을 두지 않는다. 저장 함수가 끝나거나 실패할 때까지 기다린다.",
+            "(Q9 답) Subscription은 서버 없이 브라우저 메모리 가상 저장소에 저장한다."
           ]
         }
       ],
@@ -205,7 +221,7 @@
         { "situation": "이름 입력란을 비운 채 다음 입력란으로 이동", "messageKey": "name_required", "position": "이름 입력란 아래" },
         { "situation": "이름이 2~20자의 한글 또는 영문이 아님", "messageKey": "name_invalid", "position": "이름 입력란 아래" },
         { "situation": "휴대폰 번호가 \"010\"으로 시작하는 숫자 11자리가 아님", "messageKey": "phone_invalid", "position": "휴대폰 번호 입력란 아래" },
-        { "situation": "저장 실패", "messageKey": "save_failed", "position": "신청하기 버튼 위 (Design.md에 이 오류 영역에 해당하는 컴포넌트가 없어 Variant 추가가 필요할 수 있음. **확인 필요**)" }
+        { "situation": "저장 실패", "messageKey": "save_failed", "position": "신청하기 버튼 위 (Design.md에 이 오류 영역에 해당하는 컴포넌트가 없어 Variant 추가가 필요할 수 있음. **확인 필요**)", "resolved": "(Q7 답) 새 컴포넌트·Variant를 추가하지 않는다. '신청하기' 버튼 위에 텍스트 한 줄로 표시하고 색은 `text/error` 토큰을 쓴다." }
       ],
       "navigation": [
         { "trigger": "뒤로 아이콘 (icon/arrowLeft, 취소 역할, 입력값 초기화)", "to": "/plans/[id]", "replace": false },
@@ -235,7 +251,10 @@
             "표시 항목: 신청 번호, 요금제 이름, 매달 내는 금액, 신청 일시, 신청자 이름",
             "기본 상태: 방금 저장한 Subscription 값으로 채운다. 값을 `/apply`에서 `/complete`로 넘기는 방식은 개발 합의가 필요하다(**확인 필요**).",
             "신청자 이름은 일부를 마스킹해 표시한다(예: 첫 글자만 보이고 나머지는 `*`).",
-            "방금 저장한 값이 없는 경우(새로고침, 주소로 직접 진입)에는 요금제 목록(`/plans`)으로 이동한다."
+            "방금 저장한 값이 없는 경우(새로고침, 주소로 직접 진입)에는 요금제 목록(`/plans`)으로 이동한다.",
+            "(Q8 답) 값은 브라우저 메모리(앱 상태)로 넘긴다. URL 쿼리·sessionStorage·localStorage는 쓰지 않는다.",
+            "(Q10 답) 신청 번호 형식은 format.subscription_id를 따른다.",
+            "(Q11 답) 신청 일시 표시는 format.created_at을 따른다."
           ]
         },
         {
@@ -250,7 +269,9 @@
           "title": "헤더 (Header + icon/arrowLeft)",
           "details": [
             "표시 항목: 화면 제목, 뒤로 아이콘",
-            "동작: 뒤로 아이콘을 누르면 요금제 목록(`/plans`)으로 이동한다. 이전 기록을 대체하므로 구독 신청(`/apply`)으로 돌아가지 않는다."
+            "동작: 뒤로 아이콘을 누르면 요금제 목록(`/plans`)으로 이동한다. 이전 기록을 대체하므로 구독 신청(`/apply`)으로 돌아가지 않는다.",
+            "(Q13 답) 화면 제목: messages.header_title_complete(\"신청 완료\")",
+            "(Q14 답) '요금제 더 보기'는 이전 기록을 대체하지 않는다(replace: false). 값 없음 리다이렉트는 이전 기록을 대체한다(replace: true)."
           ]
         }
       ],
@@ -260,7 +281,7 @@
       "navigation": [
         { "trigger": "뒤로 아이콘 (icon/arrowLeft)", "to": "/plans", "replace": true },
         { "trigger": "'요금제 더 보기' 버튼", "to": "/plans", "replace": false },
-        { "trigger": "방금 저장한 값이 없음 (새로고침, 주소로 직접 진입)", "to": "/plans", "replace": false }
+        { "trigger": "방금 저장한 값이 없음 (새로고침, 주소로 직접 진입)", "to": "/plans", "replace": true }
       ]
     }
   ],
@@ -287,7 +308,14 @@
     }
   ],
   "messages": {
+    "header_title_plans": "요금제",
+    "header_title_apply": "구독 신청",
+    "header_title_complete": "신청 완료",
+    "recommended_tag": "추천",
+    "benefits_section_title": "포함 혜택",
     "filter_all": "전체",
+    "filter_data_10gb_or_less": "10GB 이하",
+    "filter_no_throttle": "속도 제한 없음",
     "filter_empty": "조건에 맞는 요금제가 없어요.",
     "discount_chip": "24개월 할인",
     "detail_button": "자세히",
@@ -332,6 +360,17 @@
     "throttle": "throttle_mbps에 값이 있으면 \"소진 후 {값}Mbps로 제한\", null이면 \"속도 제한 없음\"",
     "price_after_discount": "discount_months에 값이 있으면 \"{discount_months + 1}개월째부터 {price_after_discount}원\" (p03은 \"25개월째부터 69,000원\")",
     "applicant_name": "일부를 마스킹해 표시한다(예: 첫 글자만 보이고 나머지는 `*`)",
-    "created_at": "ISO 8601로 저장. 화면 표시 형식과 시간대는 확인 필요"
+    "created_at": "ISO 8601로 저장. (Q11 답) 화면 표시는 Intl.DateTimeFormat(\"ko-KR\", { year: \"numeric\", month: \"2-digit\", day: \"2-digit\", hour: \"2-digit\", minute: \"2-digit\", hour12: false }), 시간대는 브라우저 로컬 시간대",
+    "subscription_id": "(Q10 답) UP{YYYYMMDD}-{2자리 순번} (예: UP20261014-01). 순번은 저장소 안에서 01부터 1씩 증가",
+    "save_error_area": "(Q7 답) '신청하기' 버튼 위 텍스트 한 줄, 색 `text/error` 토큰, 새 Variant 없음"
+  },
+  "decisions": {
+    "source": "harness/spec/open-questions.md",
+    "date": "2026-10-14",
+    "Q1": "사람 답",
+    "Q2-Q14": "기본값·사람 위임 (Q4·Q5는 정책 확인 필요)",
+    "storage": "브라우저 메모리 가상 저장소 (Q9)",
+    "complete_handoff": "브라우저 메모리(앱 상태) (Q8)",
+    "save_timeout": null
   }
 }
