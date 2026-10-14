@@ -20,6 +20,16 @@ export const messages: Record<string, string> = specJson.messages
 export const findPlan = (id: string | null | undefined): Plan | undefined =>
   id ? plans.find((p) => p.id === id) : undefined
 
+/** 요금제별 포함 혜택 (spec.json screens[/plans/[id]].features[].benefitsByPlan). 없으면 빈 배열 */
+export const benefitsFor = (id: string): string[] => {
+  for (const s of specJson.screens) {
+    for (const f of s.features as Array<{ benefitsByPlan?: Record<string, string[]> }>) {
+      if (f.benefitsByPlan) return f.benefitsByPlan[id] ?? []
+    }
+  }
+  return []
+}
+
 /** 매달 내는 금액 낮은 순 */
 export const plansByPrice = (): Plan[] => [...plans].sort((a, b) => a.monthly_price - b.monthly_price)
 
